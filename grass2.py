@@ -1,6 +1,6 @@
 import pygame
 
-class Grass(pygame.sprite.Sprite):
+class Grass():
     def __init__(self, screen):
         self.screen = screen
         self.image = pygame.image.load('images/grass1.png')

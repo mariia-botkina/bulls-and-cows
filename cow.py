@@ -11,7 +11,7 @@ class Cow():
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
 
-        self.rect.centerx = self.screen_rect.centerx #добавить спавн в случайном месте!!!
+        self.rect.centerx = self.screen_rect.centerx 
         self.x = float(self.screen_rect.centerx)
         self.rect.centery = self.screen_rect.centery
         self.y = float(self.screen_rect.centery)

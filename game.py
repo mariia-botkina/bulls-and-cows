@@ -2,7 +2,6 @@ import pygame, controls
 from cow import Cow
 from bull import Bull
 from boxes import Boxes
-from grass import Grass
 from pygame.sprite import Group
 
 def run():
@@ -13,12 +12,13 @@ def run():
     cow = Cow(screen)
     bull = Bull(screen)
     boxes = Boxes(screen)
-    grass = Grass(screen)
+    grasses = Group() 
+    controls.create_grass(screen, grasses)
     
     while True:
         controls.events(cow, bull)
         cow.update_cow()
         bull.update_bull()
-        controls.update(bg_color, screen, grass, cow, bull, boxes)
+        controls.update(bg_color, screen, grasses, cow, bull, boxes)
 
 run()
