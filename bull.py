@@ -10,12 +10,10 @@ class Bull():
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
 
-        self.rect.centerx = self.screen_rect.centerx/2
-        self.x = float(self.screen_rect.centerx/2)
-        self.rect.centery = self.screen_rect.centery
-        self.y = float(self.screen_rect.centery)
-
-        self.rect.bottom = self.screen_rect.bottom/3 * 2
+        self.rect.centerx = self.screen_rect.centerx / 4 * random.randint(2, 6)
+        self.x = float(self.rect.centerx)
+        self.rect.centery = self.screen_rect.centery / 4 * random.randint(2, 6)
+        self.y = float(self.rect.centery)
 
         self.mv = False
         self.mvright = False
@@ -27,16 +25,17 @@ class Bull():
         self.screen.blit(self.image, self.rect)
 
     def update_bull(self): #обновление позиции быка
+        step = 1.25
         if self.mvright and self.rect.right < self.screen_rect.right:
             self.right_bull()
-            self.x += 0.75
+            self.x += step
         if self.mvleft and self.rect.left > self.screen_rect.left:
             self.left_bull()
-            self.x -= 0.75
+            self.x -= step
         if self.mvup and self.rect.top > self.screen_rect.top:
-            self.y -= 0.75
+            self.y -= step
         if self.mvdown and self.rect.bottom < self.screen_rect.bottom:
-            self.y += 0.75
+            self.y += step
         
         self.rect.centerx = self.x
         self.rect.centery = self.y

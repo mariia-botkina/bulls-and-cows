@@ -13,12 +13,15 @@ def run():
     bull = Bull(screen)
     boxes = Boxes(screen)
     grasses = Group() 
+    buttons = Group()
+    signs = Group()
     controls.create_grass(screen, grasses)
+    controls.create_buttons(screen, buttons, signs)
     
     while True:
         controls.events(cow, bull)
         cow.update_cow()
         bull.update_bull()
-        controls.update(bg_color, screen, grasses, cow, bull, boxes)
+        controls.update(bg_color, screen, grasses, cow, bull, boxes, buttons, signs)
 
 run()

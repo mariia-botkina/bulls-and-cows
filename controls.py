@@ -2,6 +2,7 @@ import pygame
 import sys
 import random
 from grass import Grass
+from buttons import Button, Sign
 
 def events(cow, bull): #обработка событий
         for event in pygame.event.get():
@@ -48,10 +49,14 @@ def events(cow, bull): #обработка событий
                     cow.mv = not cow.mv
                     bull.mv = not bull.mv
 
-def update(bg_color, screen, grasses, cow, bull, boxes): #обновление экрана
+def update(bg_color, screen, grasses, cow, bull, boxes, buttons, signs): #обновление экрана
         screen.fill(bg_color)
         for grass in grasses:
             grass.output()
+        for button in buttons:
+            button.output()  
+        for sign in signs:
+            sign.output()  
         boxes.output()
         cow.output()
         bull.output()
@@ -59,9 +64,17 @@ def update(bg_color, screen, grasses, cow, bull, boxes): #обновление �
         #pygame.display.update()
 
 def create_grass(screen, grasses): #генерация травы на фоне     
-    grass = Grass(screen)
     number_of_grass = random.randint(40,80)
 
-    for _ in range(number_of_grass) :
+    for _ in range(number_of_grass):
         grass = Grass(screen)
         grasses.add(grass)    
+
+def create_buttons(screen, buttons, signs): #генерация кнопок и надписей
+    name = [*range(0, 10), 'del', 'enter']
+    random.shuffle(name)
+    for i in range(12):
+        button = Button(screen, i)
+        sign = Sign(screen, button, name[i])
+        buttons.add(button)  
+        signs.add(sign)
