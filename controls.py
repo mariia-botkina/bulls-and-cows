@@ -1,6 +1,8 @@
 import pygame
 import sys
 import random
+
+import rules
 from grass import Grass
 from buttons import Button, Sign
 
@@ -33,7 +35,7 @@ def events(cow): #обработка событий
                             cow.mv = not cow.mv
 
 
-def update(bg_color, screen, grasses, cow, boxes, buttons, signs): #обновление экрана
+def update(bg_color, screen, grasses, cow, boxes, buttons, signs, rules): #обновление экрана
         screen.fill(bg_color)
         for grass in grasses:
             grass.output()
@@ -44,6 +46,7 @@ def update(bg_color, screen, grasses, cow, boxes, buttons, signs): #обновл
         boxes.output()
         cow.output()
         pygame.display.flip()
+        rules.update()
         #pygame.display.update()
 
 def create_grass(screen, grasses): #генерация травы на фоне     
