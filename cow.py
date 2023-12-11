@@ -46,5 +46,3 @@ class Cow():
 
     def right_cow(self): #задание правосторонней коровы
         self.image = pygame.image.load('images/cow_right.png')
-
-           

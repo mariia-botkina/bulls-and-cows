@@ -4,52 +4,36 @@ import random
 from grass import Grass
 from buttons import Button, Sign
 
-def events(cow, bull): #обработка событий
+def events(cow): #обработка событий
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
-            elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_a:
-                    if cow.mv:
-                        cow.mvleft = True
-                    else:
-                        bull.mvleft = True
-                    pass #тут должно быть переключение между боксами с номерами
-                elif event.key == pygame.K_d:
-                    if cow.mv:
-                        cow.mvright = True #тут должно быть переключение между боксами с номерами
-                    else:
-                        bull.mvright = True
-                elif event.key == pygame.K_w:
-                    if cow.mv:
-                        cow.mvup = True
-                    else:
-                        bull.mvup = True
-                elif event.key == pygame.K_s:
-                    if cow.mv:
-                        cow.mvdown = True
-                    else:
-                        bull.mvdown = True
-                elif event.key == pygame.K_SPACE:                   
-                    pass
-            elif event.type == pygame.KEYUP:
-                if event.key == pygame.K_a: #отключение движения персонажей
-                    cow.mvleft = False
-                    bull.mvleft = False
-                elif event.key == pygame.K_d: #отключение движения персонажей
-                    cow.mvright = False
-                    bull.mvright = False
-                elif event.key == pygame.K_w: #отключение движения персонажей
-                    cow.mvup = False
-                    bull.mvup = False
-                elif event.key == pygame.K_s: #отключение движения персонажей
-                    cow.mvdown = False
-                    bull.mvdown = False
-                elif event.key == pygame.K_SPACE: #смена персонажей
-                    cow.mv = not cow.mv
-                    bull.mv = not bull.mv
+            match event.type:
+                case pygame.QUIT:
+                    sys.exit()
+                case pygame.KEYDOWN:
+                    match event.key:
+                        case pygame.K_a:
+                            cow.mvleft = True
+                        case pygame.K_d:
+                            cow.mvright = True
+                        case pygame.K_w:
+                            cow.mvup = True
+                        case pygame.K_s:
+                            cow.mvdown = True
+                case pygame.KEYUP:
+                    match event.key:
+                        case pygame.K_a: #отключение движения персонажей
+                            cow.mvleft = False
+                        case pygame.K_d: #отключение движения персонажей
+                            cow.mvright = False
+                        case pygame.K_w: #отключение движения персонажей
+                            cow.mvup = False
+                        case pygame.K_s: #отключение движения персонажей
+                            cow.mvdown = False
+                        case pygame.K_SPACE: #смена персонажей
+                            cow.mv = not cow.mv
 
-def update(bg_color, screen, grasses, cow, bull, boxes, buttons, signs): #обновление экрана
+
+def update(bg_color, screen, grasses, cow, boxes, buttons, signs): #обновление экрана
         screen.fill(bg_color)
         for grass in grasses:
             grass.output()
@@ -59,7 +43,6 @@ def update(bg_color, screen, grasses, cow, bull, boxes, buttons, signs): #обн
             sign.output()  
         boxes.output()
         cow.output()
-        bull.output()
         pygame.display.flip()
         #pygame.display.update()
 
